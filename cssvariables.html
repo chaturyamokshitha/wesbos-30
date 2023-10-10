@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css variables</title>
+</head>
+<body>
+    <h1>UPDATE CSS VARIABLES WITH <span class=h1>JS</span></h1>
+    <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input type="range"name="spacing" min="10" max="100" value="10" data-sizing="px">
+<br>
+    <label for="blur">Blur:</label>
+    <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+<br>
+    <label for="base color">Base color:</label>
+    <input type="color" name="base" value="#018DED">
+<br>
+    <img src=" http://1.bp.blogspot.com/-wK8riWPAZBY/UQfkV9HAbKI/AAAAAAAAiFQ/OVi947PV-So/s1600/eiffel_tower_at_night_paris_france-normal.jpg">
+</div>
+    <style>
+:root{
+    --spacing:50px;
+    --blur:10px;
+    --base:#018DFD;
+}
+        body{
+            text-align: center;
+        }
+        .h1{
+            color:var(--base);
+        }
+       img{
+            height:30rem;
+            width:35rem;
+             background: var(--base);
+           padding:var(--spacing);
+           margin-top: 30px;
+           filter:blur(var(--blur))
+           
+        } 
+    </style>
+<script>
+    const inputs=document.querySelectorAll('.controls input');
+    function UpdateAll(){
+        const suffix= this.dataset.sizing || '';
+         document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+    inputs.forEach(input => input.addEventListener('change',UpdateAll));
+    inputs.forEach(input => input.addEventListener('mousemove',UpdateAll));
+</script>
+</body>
+</html>
