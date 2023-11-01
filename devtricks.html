@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev javascript tools that are useful</title>
+</head>
+<body>
+    <p class="para" onClick="makefunc()">hellow fellows!!</p> 
+
+    <script>
+        const friends= [{ name: 'mokshitha', age: 18 }, { name: 'aneena', age: 19}];
+
+            function makefunc() {
+                const p = document.querySelector('p');
+                p.style.color = '#BADA55';
+                p.style.fontSize = '10px';
+            }
+
+            //regular--prints in console
+            console.log('hello');
+
+            //interpolated
+            console.log('iam %s','mokshitha');
+
+            //styled
+            console.log('%c iam great ','background-color:red')
+
+           //warning! gives a warning sign
+
+            console.warn('oh shittt');
+
+            //error! shows an error but not throws an error
+
+            console.error('please check again');
+
+
+            //info! gives information
+            console.info('Crocodiles eat 3-4 people per year');
+
+            //testing(we can test things without an if statement)
+            //if it is false throws an error if it is true the nothing happens
+            console.assert(1 == 2, 'please check again');
+
+            //clearing--clears the console
+            console.clear();
+
+            //viewing DOM elements--shows the properties of the element
+            const p = document.querySelector('p');
+            console.dir(p);
+
+            //grouping elements together
+            friends.forEach(friends => {
+                console.group(`${friends.name}`);//groups the elements
+                console.log(`${friends.name} is ${friends.age} years old`)
+                console.groupEnd(`${friends.name}`);
+            });
+            //if console.groupcollapsed is used you can get only the group names within information hidden
+
+            //count--counts the number of times an elements  appaers in console
+            console.count('hello');
+
+            ////timing
+            console.time('fetching data');
+            fetch('https://api.github.com/users/wesbos')
+                .then(data => data.json())
+                .then(data => {
+                    console.timeEnd('fetching data');
+                    console.log(data);
+                });
+
+            console.table(friends);
+            //tables the group of arrays in table form
+       
+    </script>
+</body>
+</html>
