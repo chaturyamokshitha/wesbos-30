@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html fun canvas</title>
+</head>
+<body>
+    <canvas id="draw" width="800" height="800"></canvas>
+    <style>
+        html,body{
+            margin:0;
+        }
+    </style>
+
+<script>
+    const canvas = document.querySelector('#draw');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;//to get the width same as the window
+        canvas.height = window.innerHeight;////to get the height same as the window
+        ctx.strokeStyle ='#BEBEAS';//specifies the color, gradient, or pattern to use for the strokes (outlines) around shapes. 
+        ctx.lineJoin = 'round';//shape used to join two line segments where they meet.
+        ctx.lineCap = 'round';//shape used to draw the end points of lines.
+        ctx.lineWidth=100;//the line size of the stroke
+        let isdraw = false;
+        let lastX = 0;
+        let lastY = 0;
+         let hue = 0;
+            let direction = true;
+        function draw(e) {
+            if(!isdraw)
+            return ;
+         console.log(e);
+            ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;//hsl is a rainbow color that starts with red and contains rainbow colors
+            ctx.beginPath();//Begin a new path
+            //starting from 0
+            ctx.moveTo(lastX,lastY);//moving to 0 and 0
+            //going to 
+            ctx.lineTo(e.offsetX,e.offsetY);//actual event values
+            ctx.stroke();//draw the current path
+            [lastX, lastY]=[e.offsetX,e.offsetY];//destructuring of arrays
+             hue++;//the helps in changing the colors
+            if (hue >= 360) {
+                hue = 0;//hsl start with 0 and ends with 360
+            }
+            if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+                direction = !direction;
+            }
+
+            if (direction) {
+                ctx.lineWidth++;
+            } else {
+                ctx.lineWidth--;
+            }
+        }
+        
+         canvas.addEventListener('mousedown', (e)=>{
+            isdraw=true;
+             [lastX, lastY] = [e.offsetX, e.offsetY];
+
+         });
+         canvas.addEventListener('mousemove', draw);
+         canvas.addEventListener('mouseup', draw);
+            canvas.addEventListener('mouseout', () =>isdraw = false);
+
+
+            
+//ctx.globalcompositeOperation='multiply';
+</script>
+</body>
+</html>
