@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=" initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const pressed = [];
+            let code = "mokshitha";
+
+            window.addEventListener("keyup", (e) => {
+                console.log(e.key);
+                pressed.push(e.key);
+                pressed.slice(-code.length-1,pressed.length-code.length);
+                if(pressed.join('').includes(code)){
+                    console.log("hurray");
+                    
+                }
+                console.log(pressed);
+            });
+    </script>
+</body>
+</html>
