@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <ul id="bands"></ul>
+    <script>
+        const bands = ['The one direction', 'a BTS', 'the seventeen', 'an band ateez', 'shinee', 'a new jeans'];
+        function strip(bandname) {
+            //we are replacing the or an or a with nothing so that it doesnt effect the order of the array elements
+            return bandname.replace(/^(a |the |an )/i, '').trim();
+        }
+        const sortbands = bands.sort((a, b) => { strip(a) > strip(b) ? 1 : -1; });
+        document.querySelector('#bands').innerHTML = sortbands.map(band =>
+            `<li>${band}</li>`).join('');
+
+    </script>
+</body>
+
+</html>
